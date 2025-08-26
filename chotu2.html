@@ -269,6 +269,7 @@
             left: 10%;
             animation-delay: 0s;
         }
+        
 
         .floating-element:nth-child(2) {
             top: 60%;
@@ -290,7 +291,7 @@
         }
 
         /* Mobile Responsiveness */
-        @media (max-width: 768px) {
+        /*@media (max-width: 768px) {
             .header {
                 padding: 15px 20px;
                 flex-wrap: wrap;
@@ -300,10 +301,10 @@
                 display: none;
             }
 
-            .main-title {
+             .main-title {
                 font-size: 2.5rem;
                 letter-spacing: 3px;
-            }
+            } 
 
             .subtitle {
                 font-size: 1.2rem;
@@ -324,7 +325,35 @@
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
-        }
+        }*/
+
+
+
+      /*
+       .main-title {
+            position: relative;
+            font-size: 2.5rem;       
+            line-height: 1.2;
+            overflow: hidden;
+            height: 1.2em;           
+          }
+      
+          .main-title .word {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+            text-align: left;
+          }
+      
+          .main-title .word.visible {
+            opacity: 1;
+          } */
+          
+
+
     </style>
 </head>
 <body>
@@ -364,15 +393,107 @@
                 <div style="width: 35px; height: 35px; border: 2px solid #00bcd4; clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
             </div>
 
-            <div class="hero-content">
-                <h1 class="main-title" id="mainTitle">WE DESIGN</h1>
-                <p class="subtitle" id="subtitle">The Robotics & Automation Club of NITR</p>
-                <a href="#explore" class="cta-button" id="ctaButton">Explore Our World</a>
-            </div>
+            
+
+
+            <!-- Add this to your HTML document -->
+
+
+
+   
+  
+  
+  
+    <div class="hero-content">
+      <h1 class="main-title" id="mainTitle">
+        
+      </h1>
+      
+      <p class="subtitle" id="subtitle">
+        The Robotics &amp; Automation Club of NITR
+      </p>
+      <a href="#explore" class="cta-button" id="ctaButton">
+        Explore Our World
+      </a>
+    </div>
+  
+   
+      
+    
+ 
+
+
+
+
+
+
         </main>
     </div>
 
     <script>
+
+
+       /* document.addEventListener('DOMContentLoaded', () => {
+            const words = document.querySelectorAll('.main-title .word');
+            let current = 0;
+            const swapInterval = 3000; // milliseconds
+      
+            setInterval(() => {
+              words[current].classList.remove('visible');
+              current = (current + 1) % words.length;
+              words[current].classList.add('visible');
+            }, swapInterval);
+          }); */
+
+          document.addEventListener('DOMContentLoaded', () => {
+            let text = "CYBORG";
+            const mainTitle = document.getElementById("mainTitle");
+            let i = 0;
+            let k=0;
+            let isDeleting = false;
+          
+            function typeEffect() {
+              if (!isDeleting) {
+                // Typing
+                mainTitle.textContent = text.substring(0, i + 1);
+                i++;
+          
+                if (i === text.length) {
+                  isDeleting = true;
+                  setTimeout(typeEffect, 1000); // pause before erasing
+                  return;
+                }
+              } 
+              if (isDeleting) {
+                // Erasing
+                mainTitle.textContent = text.substring(0, i - 1);
+                i--;
+                
+                if (i === 0) {
+                  isDeleting = false;
+                  if(k===0)
+                  {
+                    text = "WE DESIGN INTELLIGENCE";
+                    k=1;
+                  }
+                  else
+                  {
+                    text = "CYBORG";
+                    k=0;
+                  }
+                }
+              }
+          
+              const speed = isDeleting ? 80 : 120; // erase faster
+
+              setTimeout(typeEffect, speed);
+            }
+          
+            typeEffect();
+          });
+
+          
+
         // Network Background Animation
         function createNetworkBackground() {
             const networkBg = document.getElementById('networkBg');
@@ -385,6 +506,7 @@
 
             // Create nodes with better distribution
             for (let i = 0; i < nodeCount; i++) {
+                
                 const node = document.createElement('div');
                 node.className = 'network-node';
                 
